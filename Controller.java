@@ -190,15 +190,61 @@ public class Controller {
 		}
 	}
 
+//	public void deletePressed() {
+//		deletebutton.setOnAction(new EventHandler<ActionEvent>() {
+//			public void handle(ActionEvent event) {
+//				if (songList.getItems().isEmpty()) {
+//					return;
+//				}
+//
+//			}
+//		});
+//	}
+	
+
 	public void deletePressed() {
-		deletebutton.setOnAction(new EventHandler<ActionEvent>() {
-			public void handle(ActionEvent event) {
-				if (songList.getItems().isEmpty()) {
+		if(songList.getItems().isEmpty()) {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("Error");
+			alert.setContentText("You cannot delete from an empty list!");
+			alert.showAndWait();
+		} else {
+			Songs deleteSong = songList.getSelectionModel().getSelectedItem();
+			int deleteIndex = songList.getSelectionModel().getSelectedIndex();
+			
+			method = "delete";
+			if(confirm(method)) {
+				//user wants to delete song
+				
+				list.remove(deleteSong);
+				
+				if (list.isEmpty()) {
+					songDetailName.clear();;
+					detailArtist.clear();
+					detailAlbum.clear();
+					detailYear.clear();
 					return;
+					
+				} else if(list.size() == deleteIndex) {
+					songList.getSelectionModel().select(deleteIndex - 1);
+				
+				} else {
+					songList.getSelectionModel().select(deleteIndex + 1);
+					
 				}
 
+				songList.setItems(list.sorted());
+				Songs newSong = songList.getSelectionModel().getSelectedItem();
+				songDetailName.setText(newSong.getName());
+				detailArtist.setText(newSong.getArtist());
+				detailAlbum.setText(newSong.getAlbum());
+				detailYear.setText(newSong.getYear());
+				
 			}
-		});
+			
+			
+		}
+		
 	}
 
 	public void editPressed() {
@@ -246,7 +292,7 @@ public class Controller {
 		selected.setArtist(detailArtist.getText()); 
 		selected.setAlbum(detailAlbum.getText());
 		selected.setYear(detailYear.getText()); 
-		
+		deletePressed();
 		list.add(selected);
 		
 	}
