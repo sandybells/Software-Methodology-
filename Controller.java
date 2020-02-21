@@ -46,10 +46,6 @@ public class Controller {
 
 	@FXML
 	ListView<Songs> songList = new ListView<Songs>(list);
-	
-	
-	
-	
 
 	String method = ""; // use this for the confirm method
 
@@ -84,8 +80,6 @@ public class Controller {
 	public void addPressed() {
 		
 		
-
-
 		String name = enteredname.getText();
 		String artist = enteredartist.getText();
 		String album = enteredalbum.getText();
@@ -218,25 +212,8 @@ public class Controller {
 		}
 	}
 
-//	public void deletePressed() {
-//		deletebutton.setOnAction(new EventHandler<ActionEvent>() {
-//			public void handle(ActionEvent event) {
-//				if (songList.getItems().isEmpty()) {
-//					return;
-//				}
-//
-//			}
-//		});
-//	}
-	
-
 	public void deletePressed() {
-//		if(songList.getItems().isEmpty()) {
-//			Alert alert = new Alert(AlertType.INFORMATION);
-//			alert.setTitle("Error");
-//			alert.setContentText("You cannot delete from an empty list!");
-//			alert.showAndWait();
-//		} 
+
 		if (!(songList.getItems().isEmpty())){
 			Songs deleteSong = songList.getSelectionModel().getSelectedItem();
 			int deleteIndex = songList.getSelectionModel().getSelectedIndex();
@@ -286,9 +263,7 @@ public class Controller {
 			Songs deleteSong = songList.getSelectionModel().getSelectedItem();
 			int deleteIndex = songList.getSelectionModel().getSelectedIndex();
 			
-			
-			
-				
+						
 				list.remove(deleteSong);
 				
 				if (list.isEmpty()) {
@@ -305,10 +280,7 @@ public class Controller {
 					songList.getSelectionModel().select(deleteIndex + 1);
 					
 				}
-
-			
-			
-			
+	
 			
 		}
 		
@@ -341,22 +313,14 @@ public class Controller {
 	}
 	public void applyPressed() {
 		
-		
-
 	
-		
-		
-		
 		String name = songDetailName.getText();
 		String artist = detailArtist.getText();
 		String album = detailAlbum.getText();
 		String year = detailYear.getText();
 		
 		
-	
-		
-		
-		//check here if song is already in the list 
+		//check if song is already in the list 
 		if (name.isEmpty()) {
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Error Editing Song");
@@ -429,15 +393,7 @@ public class Controller {
 			}
 		}
 		
-		
-
-	//	Songs newSong = songList.getSelectionModel().getSelectedItem(); //whats it selecting now 
-		
-		
-
-		
-		
-		
+	
 	}
 	
 	public void editCancelPressed() {
@@ -459,7 +415,6 @@ public class Controller {
 		
 	}
 	
-
 		
 		public void listClicked() {
 			
@@ -472,15 +427,7 @@ public class Controller {
 				
 			}
 		
-		}
-		
-	
-	
-		
-	
-
-
-		
+		}	
 
 	
 }
