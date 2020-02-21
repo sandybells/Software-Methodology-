@@ -14,15 +14,15 @@
    <children>
       
        <Button fx:id="applyButton" layoutX="312.0" layoutY="360.0" mnemonicParsing="false" onAction="#applyPressed" text="Apply" visible="false" />
-      <TextField fx:id="enteredname" layoutX="334.0" layoutY="24.0" promptText="Song Name" visible="false" />
-      <TextField fx:id="enteredartist" layoutX="334.0" layoutY="59.0" promptText="Artist" visible="false" />
-      <TextField fx:id="enteredalbum" layoutX="334.0" layoutY="94.0" promptText="Album (Optional)" visible="false" />
-      <TextField fx:id="enteredyear" layoutX="334.0" layoutY="129.0" promptText="Year (Optional)" visible="false" />
+      <TextField fx:id="enteredname" layoutX="334.0" layoutY="24.0" promptText="Song Name" visible="false"  />
+      <TextField fx:id="enteredartist" layoutX="334.0" layoutY="59.0" promptText="Artist" visible="false"  />
+      <TextField fx:id="enteredalbum" layoutX="334.0" layoutY="94.0" promptText="Album (Optional)" visible="false"  />
+      <TextField fx:id="enteredyear" layoutX="334.0" layoutY="129.0" promptText="Year (Optional)" visible="false"  />
       <Button fx:id="addbutton" layoutX="374.0" layoutY="166.0" mnemonicParsing="false" onAction="#addingSongPressed" text="Add Song" />
       <Button fx:id="deletebutton" layoutX="313.0" layoutY="324.0" mnemonicParsing="false" onAction="#deletePressed" text="Delete Song" />
       <Button fx:id="editbutton" layoutX="313.0" layoutY="360.0" mnemonicParsing="false" onAction="#editPressed" text="Edit Song" />
       <ListView fx:id="songList" onMouseClicked="#listClicked" layoutX="23.0" layoutY="46.0" prefHeight="186.0" prefWidth="301.0" />
-      <TextField fx:id="songDetailName" editable="false" layoutX="139.0" layoutY="278.0" prefHeight="25.0" prefWidth="149.0" promptText="Song Name" />
+      <TextField fx:id="songDetailName" editable="false" layoutX="139.0" layoutY="278.0" prefHeight="25.0" prefWidth="149.0" promptText="Song Name"  />
       <Button fx:id="addCancel" layoutX="431.0" layoutY="166.0" mnemonicParsing="false" onAction="#addCancelled" text="Cancel" visible="false" />
       <Button fx:id="editCancel" layoutX="397.0" layoutY="360.0" mnemonicParsing="false" onAction="#editCancelPressed" prefHeight="25.0" prefWidth="68.0" text="Cancel" textAlignment="RIGHT" visible="false" />
       <Button fx:id="addingButton" layoutX="346.0" layoutY="166.0" mnemonicParsing="false" onAction="#addPressed" text="Add Song" visible="false" />
