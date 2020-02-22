@@ -46,18 +46,15 @@ public class Controller {
 		// load the text in here
 
 	}
-	
+	 
 	public void loadSong(File file) {
-		System.out.println("loadSong");
 		BufferedReader reader;
 		try {
 			
 			reader = new BufferedReader(new FileReader(file));
 			String line = reader.readLine();
-			System.out.println(line);
 			String[] song;
 			while(line != null) {
-//				System.out.println("should not be here");
 				song = line.split(",");
 				Songs newsong = new Songs(song[0], song[1], song[2], song[3]);
 				list.add(newsong);				
@@ -66,11 +63,15 @@ public class Controller {
 			}
 			songList.setItems(list.sorted());
 			songList.getSelectionModel().select(0);
+			songDetailName.setText(list.get(0).getName());
+			detailArtist.setText(list.get(0).getArtist());
+			detailAlbum.setText(list.get(0).getAlbum());
+			detailYear.setText(list.get(0).getYear());
+			
 			reader.close();
 			
 		} catch (IOException e) {
 
-			System.out.println("Error opening");
 			return;
 		}
 		
@@ -78,13 +79,12 @@ public class Controller {
 	
 	public void saveSong(File file) {
 		
-		System.out.println("Closing");
+		
 		BufferedWriter writer;
 		
 		try {
 			writer = new BufferedWriter(new FileWriter(file));
 			while(!list.isEmpty()) {
-				System.out.println("Should be here once");
 				Songs song = list.get(0);
 				list.remove(0);
 				writer.write(song.toFullString());
@@ -94,7 +94,6 @@ public class Controller {
 			writer.close();
 			
 		} catch (IOException e) {
-			System.out.println("Error closing");
 			return;
 		}
 		
