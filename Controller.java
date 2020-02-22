@@ -4,36 +4,24 @@
 
 package controller;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Optional;
-
-import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.VPos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import song.Songs;
 import javafx.fxml.*;
-import javafx.beans.value.ChangeListener;
 
 public class Controller {
 
@@ -57,6 +45,60 @@ public class Controller {
 
 		// load the text in here
 
+	}
+	
+	public void loadSong(File file) {
+		System.out.println("loadSong");
+		BufferedReader reader;
+		try {
+			
+			reader = new BufferedReader(new FileReader(file));
+			String line = reader.readLine();
+			System.out.println(line);
+			String[] song;
+			while(line != null) {
+//				System.out.println("should not be here");
+				song = line.split(",");
+				Songs newsong = new Songs(song[0], song[1], song[2], song[3]);
+				list.add(newsong);				
+				line = reader.readLine();
+				
+			}
+			songList.setItems(list.sorted());
+			songList.getSelectionModel().select(0);
+			reader.close();
+			
+		} catch (IOException e) {
+
+			System.out.println("Error opening");
+			return;
+		}
+		
+	}
+	
+	public void saveSong(File file) {
+		
+		System.out.println("Closing");
+		BufferedWriter writer;
+		
+		try {
+			writer = new BufferedWriter(new FileWriter(file));
+			while(!list.isEmpty()) {
+				System.out.println("Should be here once");
+				Songs song = list.get(0);
+				list.remove(0);
+				writer.write(song.toFullString());
+				writer.newLine();
+			}
+			
+			writer.close();
+			
+		} catch (IOException e) {
+			System.out.println("Error closing");
+			return;
+		}
+		
+		
 	}
 
 	public void addingSongPressed() {
@@ -405,7 +447,7 @@ public class Controller {
 		addbutton.setDisable(false);
 		deletebutton.setDisable(false);
 		
-
+		listClicked();
 		
 		songDetailName.setEditable(false); //this will have to be set false at the end of the edit method!!
 		detailArtist.setEditable(false);
@@ -431,3 +473,5 @@ public class Controller {
 
 	
 }
+
+
